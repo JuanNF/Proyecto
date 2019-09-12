@@ -1,0 +1,27 @@
+form .avatar{
+    width: 55px;
+    margin-bottom: 15px;
+}
+.navbar .container_avatar,
+.pub_image .container_avatar{
+    height: 35px;
+    width: 35px;
+    border-radius: 900px;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.navbar .container_avatar img,
+.pub_image .container_avatar img{
+    height: 100%;
+} 
+
+.pub_image .container_avatar{
+    float: left;
+    margin-right: 15px;
+}
+
+.pub_image .data_user{
+    font-weight: bold;
+    line-height: 35px;
+}

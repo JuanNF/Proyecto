@@ -17,7 +17,7 @@ require_once 'includes/helpers.php';
         <nav id="menu">
             <ul>
                 <li>
-                    <a href="index´php">Inicio</a>
+                    <a href="index.php">Inicio</a>
                 </li>
                 <?php
                     $categorias = conseguirCategorias($db);

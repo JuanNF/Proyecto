@@ -14,17 +14,17 @@
         <?php endif;?>
         <form action="actualizar-usuario.php" method="POST">
             <label fot="nombre">Nombre</label>
-            <input type="text" name="nombre"/>
+            <input type="text" name="nombre" value="<?= $_SESSION['usuario']['nombre']; ?>"/>
             
             <?php echo isset($_SESSION['errores']['nombre']) ? mostrarError($_SESSION['errores'], 'nombre') : ''; ?>
             
             <label fot="apellidos">Apellidos</label>
-            <input type="text" name="apellidos"/>
+            <input type="text" name="apellidos" value="<?= $_SESSION['usuario']['apellidos']; ?>"/>
             
             <?php echo isset($_SESSION['errores']['apellidos']) ? mostrarError($_SESSION['errores'], 'apellidos') : '';?>
             
             <label fot="email">Email</label>
-            <input type="email" name="email"/>
+            <input type="email" name="email" value="<?= $_SESSION['usuario']['email']; ?>"/>
             
             <?php echo isset($_SESSION['errores']['email']) ? mostrarError($_SESSION['errores'], 'email') : '';?>
             

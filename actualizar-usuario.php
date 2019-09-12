@@ -39,15 +39,24 @@ if(isset($_POST)){
     if(empty($errores)){
         $guardar_usuario= true;
         //cifrar contraseña
-        $usuario = $_SESSION['usuario']['id'];
-        $sql = "UPDATE usuarios SET nombre = '".$nombre."' apellidos='".$apellidos."' email = '".$email."' where id=".$usuario.";";
-        $guardar = mysqli_query($db, $sql);
-        var_dump(mysqli_error($db));
-        die();
-        if($guardar){
-            $_SESSION['completado']= "La actualizacion se ha completado con éxito";
+        //Comprobar si el email ya exitse;
+        $sql = "SELECT id, email FROM usuarios where email = '$email'";
+        $isset_email = mysqli_query($db, $sql);
+        $isset_user = mysqli_fetch_assoc($isset_email);
+        if($isset_user['id']== $usuario['id'] || empty($isset_user)){
+            $usuario = $_SESSION['usuario']['id'];
+            $sql = "UPDATE usuarios SET nombre = '$nombre', apellidos='$apellidos', email = '$email' where id=$usuario;";
+            $guardar = mysqli_query($db, $sql);
+            if($guardar){
+                $_SESSION['usuario']['nombre']=$nombre;
+                $_SESSION['usuario']['apellidos']=$apellidos;
+                $_SESSION['usuario']['email']=$email;
+                $_SESSION['completado']= "La actualizacion se ha completado con éxito";
+            }else{
+                $_SESSION['errores']['general']="Fallo al actualizar el usuario";
+            }
         }else{
-            $_SESSION['errores']['general']="Fallo al actualizar el usuario";
+            $_SESSION['errores']['general']= "El correo ya exite";
         }
         //Insertar en la tabla usuario
     }else{
